@@ -820,13 +820,13 @@ export default {
       this.getConfigKey("edg.file.server").then((response) => {
         if (response.code === 200) {
           // this.fileServer = response.msg;
-          this.fileServer = 'http://10.112.11.224:3080'
+          this.fileServer = 'http://10.112.56.65:3080'
           console.log("---------------"+this.fileServer+"---------------")
         }
       });
       this.getConfigKey("edg.file.server").then((response) => {
         if (response.code === 200) {
-          this.previewServer = 'http://10.112.11.224:3080';
+          this.previewServer = 'http://10.112.56.65:3080';
         }
       });
       // this.fileServer = "10.112.57.239:8082";

@@ -39,7 +39,7 @@ module.exports = {
         }
       },
       '/file-api': {
-        target: `http://10.112.11.224:3080`,
+        target: `http://10.112.56.65:3080`,
         // target: `http://10.112.57.239:8082`,
         changeOrigin: true,
         pathRewrite: {
