@@ -100,6 +100,18 @@ const backendRouters = [{
   },
 },
 /** 数据详情 静态路由 */
+  {
+    path: '/share/apply',
+    component: (resolve) => require(['@/views/share/apply'], resolve),
+    name: 'ShareApply',
+    hidden: true,
+    meta: {
+      title: '申请补贴',
+      redirect: "/share/apply",
+      noCache: true,
+      affix: true
+    },
+  },
 {
   path: '/edg/content',
   component: (resolve) => require(['@/views/edg/content'], resolve),

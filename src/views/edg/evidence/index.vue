@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+<!--    搜索栏-->
     <el-form
       :model="queryParams"
       ref="queryForm"
@@ -50,6 +51,7 @@
         >
       </el-form-item>
     </el-form>
+
     <el-row class="mb8">
       <right-toolbar @queryTable="getList"></right-toolbar>
     </el-row>
