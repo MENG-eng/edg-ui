@@ -509,9 +509,6 @@ export default {
         keywords: [
           { required: true, message: "关键词不能为空", trigger: "blur" },
         ],
-        keywords: [
-          { required: true, message: "关键词不能为空", trigger: "blur" },
-        ],
         categoryId: [
           { required: true, message: "栏目不能为空", trigger: "blur" },
         ],
@@ -668,6 +665,7 @@ export default {
         evidenceTypeName: row.evidenceTypeName,
         fileName: row.fileName,
       };
+      console.log(row)
       const page = this.$router.resolve({
         path: "/edg/content",
         query: {

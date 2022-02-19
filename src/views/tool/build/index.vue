@@ -362,7 +362,7 @@ export default {
     download() {
       this.dialogVisible = true;
       this.showFileName = true;
-      this.operationType = "download";
+      // this.operationType = "download";
     },
     run() {
       this.dialogVisible = true;

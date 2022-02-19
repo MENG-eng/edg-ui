@@ -103,10 +103,10 @@
             <div class="topDemo">
               <div v-show="nodeInfo" class="node-info">
                 <div class="row">
-                  <div class="message-blod">
-                    文件版本：{{ nodeInfo.version || "" }}
-                  </div>
-                  <span class="m10">|</span>
+<!--                  <div class="message-blod">-->
+<!--                    文件版本：{{ nodeInfo.version || "" }}-->
+<!--                  </div>-->
+<!--                  <span class="m10">|</span>-->
                   <div class="message-blod">
                     所在区块号：{{ nodeInfo.blockHeight }}
                   </div>
@@ -480,7 +480,7 @@ export default {
       /** 节点列表 */
       nodeList: [],
 
-      /** 数据数据 */
+      /** 存证数据 */
       evidenceData: {},
 
       /** 上次溯源信息 */

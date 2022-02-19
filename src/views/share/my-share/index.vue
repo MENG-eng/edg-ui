@@ -6,7 +6,7 @@
       :inline="true"
       v-show="showSearch"
       label-width="68px"
-      style="text-align:right;"
+
     >
 
       <el-form-item>
@@ -39,25 +39,29 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="evidenceTypeName"
-        label="共享状态"
-        align="center"
-        width="160"
-      ></el-table-column>
-      <el-table-column
         prop="description"
         label="共享描述"
         align="center"
       ></el-table-column>
       <el-table-column
-        prop="heat"
-        label="共享方"
-        align="center"
-        width="120"
-      ></el-table-column>
-      <el-table-column
         prop="createTime"
         label="创建时间"
+        align="center"
+        width="160"
+      ></el-table-column>
+      <el-table-column
+        prop="shareState"
+        label="共享状态"
+        align="center"
+        width="120"
+      >
+        <template slot-scope="scope">
+          <div>{{ "审核中" }}</div>
+        </template>
+      </el-table-column>
+      <el-table-column
+        prop="shareName"
+        label="共享方"
         align="center"
         width="160"
       ></el-table-column>
@@ -73,7 +77,6 @@
             type="text"
             icon="el-icon-folder-opened"
             @click="handleView(scope.row)"
-            v-hasPermi="['edg:evidence:view']"
           >详情</el-button
           >
           <el-button
@@ -108,6 +111,9 @@
     listEvidence,
     publishArticle,
   } from "../../../api/edg/evidence";
+  import {
+    listSubsidy
+  } from '../../../api/share/subsidy'
   import Treeselect from "@riophae/vue-treeselect";
   import "@riophae/vue-treeselect/dist/vue-treeselect.css";
   export default {
@@ -124,13 +130,6 @@
         queryParams: {
           pageNum: 1,
           pageSize: 10,
-          //文件名
-          fileName: "",
-          //数据类型
-          evidenceType: null,
-          //创建时间
-          startTime: "",
-          endTime: "",
         },
         // 创建时间--选择器
         pickerTime: [],
@@ -176,7 +175,7 @@
       /** 查询文件信息列表 */
       getList() {
         this.loading = true;
-        listEvidence(this.queryParams).then((response) => {
+        listSubsidy(this.queryParams).then((response) => {
           this.queryData = response.rows;
           this.total = response.total;
           this.loading = false;

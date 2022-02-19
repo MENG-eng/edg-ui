@@ -358,40 +358,40 @@
       </div>
 
       <div class="page-bot">
-<!--        <div class="file-container">-->
-<!--          <el-table :data="dataFiles" row-key="id" stripe>-->
-<!--            <el-table-column label="原始文件" align="center">-->
-<!--              <template slot-scope="scope">-->
-<!--                <div-->
-<!--                  :style="{-->
-<!--                    color:-->
-<!--                      scope.row.id === currentAttachmentId ? '#1890ff' : '',-->
-<!--                    cursor: 'pointer',-->
-<!--                  }"-->
-<!--                  @click="handleFile(scope.row, scope.row.id)"-->
-<!--                >-->
-<!--                  {{ scope.row.fileName || "" }}-->
-<!--                </div>-->
-<!--              </template>-->
-<!--            </el-table-column>-->
-<!--          </el-table>-->
-<!--          <el-table :data="attachments" row-key="id">-->
-<!--            <el-table-column label="附件" align="center">-->
-<!--              <template slot-scope="scope">-->
-<!--                <div-->
-<!--                  :style="{-->
-<!--                    color:-->
-<!--                      scope.row.id === currentAttachmentId ? '#1890ff' : '',-->
-<!--                    cursor: 'pointer',-->
-<!--                  }"-->
-<!--                  @click="handleFile(scope.row, scope.row.id)"-->
-<!--                >-->
-<!--                  {{ scope.row.fileName || "" }}-->
-<!--                </div>-->
-<!--              </template>-->
-<!--            </el-table-column>-->
-<!--          </el-table>-->
-<!--        </div>-->
+        <div class="file-container">
+          <el-table :data="dataFiles" row-key="id" stripe>
+            <el-table-column label="原始文件" align="center">
+              <template slot-scope="scope">
+                <div
+                  :style="{
+                    color:
+                      scope.row.id === currentAttachmentId ? '#1890ff' : '',
+                    cursor: 'pointer',
+                  }"
+                  @click="handleFile(scope.row, scope.row.id)"
+                >
+                  {{ scope.row.fileName || "" }}
+                </div>
+              </template>
+            </el-table-column>
+          </el-table>
+          <el-table :data="attachments" row-key="id">
+            <el-table-column label="附件" align="center">
+              <template slot-scope="scope">
+                <div
+                  :style="{
+                    color:
+                      scope.row.id === currentAttachmentId ? '#1890ff' : '',
+                    cursor: 'pointer',
+                  }"
+                  @click="handleFile(scope.row, scope.row.id)"
+                >
+                  {{ scope.row.fileName || "" }}
+                </div>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
         <div class="imgPreviewContainer">
           <div
             class="row between"

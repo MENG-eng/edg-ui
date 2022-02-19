@@ -8,7 +8,7 @@
       label-width="68px"
     >
 
-      <el-form-item label="选择数据" prop="rangeTime">
+      <el-form-item label="选择数据" prop="createTime">
         <el-date-picker
           v-model="pickerTime"
           type="daterange"
@@ -21,17 +21,12 @@
         </el-date-picker>
       </el-form-item>
       <el-form-item>
-        <el-button type="cyan" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
+        <el-button
+          type="primary"
+          icon="el-icon-plus"
+          @click="handleCreate"
+        >创建共享</el-button>
       </el-form-item>
-      <div style="float:right">
-        <el-form-item>
-          <el-button
-            type="primary"
-            icon="el-icon-plus"
-            @click="handleCreate"
-          >创建共享</el-button>
-        </el-form-item>
-      </div>
     </el-form>
 
     <el-row :gutter="10" class="mb8">
@@ -63,92 +58,91 @@
       @pagination="getList"
     />
 
+    <!--    &lt;!&ndash; 添加创建数据对话框 &ndash;&gt;-->
+    <!--    <el-dialog title="创建数据" :visible.sync="createVisable" class="dialog">-->
+    <!--      <el-form-->
+    <!--        :model="createParams"-->
+    <!--        ref="createForm"-->
+    <!--        :rules="createFormRules"-->
+    <!--        v-show="showSearch"-->
+    <!--        label-width="80px"-->
+    <!--      >-->
+    <!--        <el-form-item label="数据名称" prop="fileName">-->
+    <!--          <el-input-->
+    <!--            v-model="createParams.fileName"-->
+    <!--            placeholder="数据名称"-->
+    <!--            clearable-->
+    <!--            size="small"-->
+    <!--          />-->
+    <!--        </el-form-item>-->
+    <!--        <el-form-item label="共享方" prop="shareName">-->
+    <!--          <el-input-->
+    <!--            v-model="createParams.shareName"-->
+    <!--            placeholder="数据名称"-->
+    <!--            clearable-->
+    <!--            size="small"-->
+    <!--          />-->
+    <!--        </el-form-item>-->
+    <!--        <el-form-item label="数据类型" prop="evidenceType">-->
+    <!--          <treeselect-->
+    <!--            v-model="createParams.evidenceType"-->
+    <!--            :options="evidenceTypeList"-->
+    <!--            placeholder="请选择数据类型"-->
+    <!--            @select="evidenceTypeChange"-->
+    <!--          />-->
+    <!--        </el-form-item>-->
+    <!--        <el-form-item label="数据文件" prop="file">-->
+    <!--          <el-upload-->
+    <!--            ref="fileUpload"-->
+    <!--            class-->
+    <!--            action-->
+    <!--            :limit="1"-->
+    <!--            accept=".jpg,.png,.pdf,.doc,.docx"-->
+    <!--            :file-list="fileList"-->
+    <!--            :before-upload="handleBeforeUpload"-->
+    <!--            :before-remove="beforeRemove"-->
+    <!--            :on-exceed="handleExceed"-->
+    <!--            :http-request="uploadDataFile"-->
+    <!--          >-->
+    <!--            <el-button size="small" type="primary">点击上传</el-button>-->
+    <!--            <div slot="tip" class="el-upload__tip">-->
+    <!--              可上传jpg/png/pdf/doc/docx格式文件-->
+    <!--            </div>-->
+    <!--          </el-upload>-->
+    <!--        </el-form-item>-->
 
-<!--    &lt;!&ndash; 添加创建数据对话框 &ndash;&gt;-->
-    <el-dialog title="创建数据" :visible.sync="createVisable" class="dialog">
-      <el-form
-        :model="createParams"
-        ref="createForm"
-        :rules="createFormRules"
-        v-show="showSearch"
-        label-width="80px"
-      >
-        <el-form-item label="数据名称" prop="fileName">
-          <el-input
-            v-model="createParams.fileName"
-            placeholder="数据名称"
-            clearable
-            size="small"
-          />
-        </el-form-item>
-        <el-form-item label="共享方" prop="shareName">
-          <el-input
-            v-model="createParams.shareName"
-            placeholder="数据名称"
-            clearable
-            size="small"
-          />
-        </el-form-item>
-        <el-form-item label="数据类型" prop="evidenceType">
-          <treeselect
-            v-model="createParams.evidenceType"
-            :options="evidenceTypeList"
-            placeholder="请选择数据类型"
-            @select="evidenceTypeChange"
-          />
-        </el-form-item>
-        <el-form-item label="数据文件" prop="file">
-          <el-upload
-            ref="fileUpload"
-            class
-            action
-            :limit="1"
-            accept=".jpg,.png,.pdf,.doc,.docx"
-            :file-list="fileList"
-            :before-upload="handleBeforeUpload"
-            :before-remove="beforeRemove"
-            :on-exceed="handleExceed"
-            :http-request="uploadDataFile"
-          >
-            <el-button size="small" type="primary">点击上传</el-button>
-            <div slot="tip" class="el-upload__tip">
-              可上传jpg/png/pdf/doc/docx格式文件
-            </div>
-          </el-upload>
-        </el-form-item>
+    <!--        <el-form-item label="文件描述" prop="desc">-->
+    <!--          <el-input-->
+    <!--            type="textarea"-->
+    <!--            v-model="createParams.desc"-->
+    <!--            placeholder="文件描述"-->
+    <!--            :autosize="{ minRows: 6, maxRows: 10 }"-->
+    <!--          ></el-input>-->
+    <!--        </el-form-item>-->
 
-        <el-form-item label="文件描述" prop="desc">
-          <el-input
-            type="textarea"
-            v-model="createParams.desc"
-            placeholder="文件描述"
-            :autosize="{ minRows: 6, maxRows: 10 }"
-          ></el-input>
-        </el-form-item>
-
-<!--        <el-form-item label="附件">-->
-<!--          <el-upload-->
-<!--            ref="attachmentUpload"-->
-<!--            class-->
-<!--            action-->
-<!--            accept=".jpg,.png,.pdf,.doc,.docx"-->
-<!--            :file-list="attachmentFileList"-->
-<!--            :before-upload="handleBeforeUploadAttachment"-->
-<!--            :before-remove="beforeRemoveAttachment"-->
-<!--            :http-request="uploadAttachmentFile"-->
-<!--          >-->
-<!--            <el-button size="small" type="primary">点击上传</el-button>-->
-<!--            <div slot="tip" class="el-upload__tip">-->
-<!--              可上传jpg/png/pdf/doc/docx格式文件-->
-<!--            </div>-->
-<!--          </el-upload>-->
-<!--        </el-form-item>-->
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="resetCreateForm">重 置</el-button>
-        <el-button type="primary" @click="createEvidence">确 定</el-button>
-      </div>
-    </el-dialog>
+    <!--        <el-form-item label="附件">-->
+    <!--          <el-upload-->
+    <!--            ref="attachmentUpload"-->
+    <!--            class-->
+    <!--            action-->
+    <!--            accept=".jpg,.png,.pdf,.doc,.docx"-->
+    <!--            :file-list="attachmentFileList"-->
+    <!--            :before-upload="handleBeforeUploadAttachment"-->
+    <!--            :before-remove="beforeRemoveAttachment"-->
+    <!--            :http-request="uploadAttachmentFile"-->
+    <!--          >-->
+    <!--            <el-button size="small" type="primary">点击上传</el-button>-->
+    <!--            <div slot="tip" class="el-upload__tip">-->
+    <!--              可上传jpg/png/pdf/doc/docx格式文件-->
+    <!--            </div>-->
+    <!--          </el-upload>-->
+    <!--        </el-form-item>-->
+    <!--      </el-form>-->
+    <!--      <div slot="footer" class="dialog-footer">-->
+    <!--        <el-button @click="resetCreateForm">重 置</el-button>-->
+    <!--        <el-button type="primary" @click="createEvidence">确 定</el-button>-->
+    <!--      </div>-->
+    <!--    </el-dialog>-->
 
   </div>
 </template>
@@ -163,10 +157,6 @@
     exportException,
   } from "@/api/edg/exception";
   import {
-    /** @api 上传文件 */
-      uploadFile,
-  } from "@/api/file";
-  import {
     listElectric,
     exportElectric
   } from "@/api/share/electric";
@@ -174,7 +164,6 @@
   import Treeselect from "@riophae/vue-treeselect";
   import "@riophae/vue-treeselect/dist/vue-treeselect.css";
   import { createEvidence, listEvidence } from '../../../api/edg/evidence'
-  import {createSubsidy} from '@/api/share/subsidy';
   export default {
     name: "Electric",
     components: { Treeselect },
@@ -182,28 +171,45 @@
       return {
         /** 数据类型 */
         evidenceTypeList: [],
-        //原始文件
-        fileList: [],
-        //附件列表
-        attachmentFileList: [],
+        // //原始文件
+        // fileList: [],
+        // //附件列表
+        // attachmentFileList: [],
         //
-        createFormRules: {
-
-        },
-         /** 创建数据表单数据 */
-        createParams: {
-          //文件名
-          fileName: "",
-          //共享方
-          shareName: "",
-          //数据类型
-          evidenceType: null,
-          evidenceItem: null,
-          //内容描述
-          desc: "",
-        },
-        // 创建数据弹窗是否可见
-        createVisable: false,
+        // createFormRules: {
+        //   fileName: [
+        //     {
+        //       required: true,
+        //       message: "数据名称不能为空",
+        //       trigger: "blur",
+        //     },
+        //     {
+        //       validator: validateNameRepet,
+        //       trigger: "blur",
+        //     },
+        //   ],
+        //   evidenceType: [
+        //     { required: true, message: "数据类型不能为空", trigger: "blur" },
+        //   ],
+        //   file: [{ required: true, validator: validateFileEmpty }],
+        //   desc: [
+        //     { required: true, message: "内容描述不能为空", trigger: "blur" },
+        //   ],
+        // },
+        // /** 创建数据表单数据 */
+        // createParams: {
+        //   //文件名
+        //   fileName: "",
+        //   //共享方
+        //   shareName: "",
+        //   //数据类型
+        //   evidenceType: null,
+        //   evidenceItem: null,
+        //   //内容描述
+        //   desc: "",
+        // },
+        // // 创建数据弹窗是否可见
+        // createVisable: false,
 
         // 遮罩层
         loading: true,
@@ -226,6 +232,11 @@
         // 电量数据
         electricList: [],
 
+        // 弹出层标题
+        title: "",
+
+        // 是否显示弹出层
+        open: false,
 
         // 查询参数
         queryParams: {
@@ -239,6 +250,11 @@
         // 创建时间--选择器
         pickerTime:[],
 
+        // 表单参数
+        form: {},
+
+        // 表单校验
+        rules: {},
       };
     },
 
@@ -418,7 +434,6 @@
         const evidenceType = this.createParams.evidenceType;
         const evidenceTypeName = this.createParams.evidenceItem.name;
         const fileName = this.createParams.fileName;
-        const shareName = this.createParams.shareName;
 
         const file = this.fileList[0];
         let dataFile = {
@@ -458,12 +473,11 @@
           evidenceType: evidenceType,
           evidenceTypeName: evidenceTypeName,
           fileName: fileName,
-          shareName: shareName,
         };
 
         this.createVisable = false;
         const loading = this.loadingView({ text: "上链中..." });
-        createSubsidy(data)
+        createEvidence(data)
           .then((response) => {
             this.$message({
               message: "数据创建成功",
